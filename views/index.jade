@@ -1,0 +1,23 @@
+extends layout
+
+block content
+
+	h1= title
+
+	h1#title Welcome to your Packing Checkist Dashboard
+		
+	//- p Welcome to #{title}
+	h3.
+		Don't forget something for your trip! Make a packing list!
+	img(src="/images/suitcase2.jpg")
+	a(href="/PackingList").btn.btn-primary.btn-lg Press here to start creating your list.
+
+
+	p.
+
+		Or open one of your already created lists:
+
+
+	script(src="http://code.jquery.com/jquery-2.0.3.min.js")
+	link(rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css")
+	script(src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")

@@ -1,0 +1,31 @@
+extends layout
+
+block content
+
+	h1= title
+	//- p Welcome to #{title}
+	h2 Packing List
+	p.
+		What do you want to name this Packing List?
+
+	input(type="text", placeholder="packing list name")
+	p.
+		Add your packing items here:
+	p
+
+
+
+	a(class='button').btn.btn-primary.btn-lg + add item
+	a(class='button').btn.btn-primary.btn-lg Done
+
+
+	.checkbox
+	label
+	input(type='checkbox')
+	input(type="text", placeholder="packing list item")
+
+	
+	//- a(href="/indexCapeVerde").btn.btn-primary.btn-lg + add item
+	script(src="http://code.jquery.com/jquery-2.0.3.min.js")
+	link(rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css")
+	script(src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")
