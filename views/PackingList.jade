@@ -6,26 +6,35 @@ block content
 	//- p Welcome to #{title}
 	h2 Packing List
 	p.
-		What do you want to name this Packing List?
+		What do you want to name your Packing List?
 
-	input(type="text", placeholder="packing list name")
+	input(class='form-control', type="text", placeholder="packing list name")
 	p.
 		Add your packing items here:
-	p
+	.checkbox
+	label
 
+	div#inputContainer
+		//- div.inputRow
+		//- 	input(class='eachCheckbox', type='checkbox')
+		//- 	input(class='eachItem', type="text", placeholder="packing list item")
+
+	h2#new-item
+	
+	
 
 
 	a(class='button').btn.btn-primary.btn-lg + add item
 	a(class='button').btn.btn-primary.btn-lg Done
 
+	script#input-template(type="text/x-handlebars-template").
+		<div class='inputRow'>
+			<input class='eachCheckbox' type='checkbox'>
+			<input class='eachItem' type='text' placeholder='packing list item'>
+		</div>
 
-	.checkbox
-	label
-	input(type='checkbox')
-	input(type="text", placeholder="packing list item")
-
-	
-	//- a(href="/indexCapeVerde").btn.btn-primary.btn-lg + add item
 	script(src="http://code.jquery.com/jquery-2.0.3.min.js")
+	script(src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js")
 	link(rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css")
 	script(src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")
+	script(src='/javascripts/main.js')

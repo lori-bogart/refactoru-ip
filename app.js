@@ -1,5 +1,5 @@
 
-/**
+/** app.js Packing List IP project
  * Module dependencies.
  */
 
@@ -32,10 +32,6 @@ app.get('/', routes.index);
 app.get('/PackingList', function(req, resp){
 		resp.render("PackingList");
 	});
-app.get('/indexCapeVerde', function(req, resp){
-		resp.render("indexCapeVerde");
-	});
-
 
 
 http.createServer(app).listen(app.get('port'), function(){
