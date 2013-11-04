@@ -8,8 +8,17 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
+var mongoose = require('mongoose');
 
+mongoose.connect('mongodb://localhost/packingdb');
+var packingListModel = mongoose.model('packingList', { packingListName: String });
+var itemModel = mongoose.model('item', { listName: String, itemName: String, isChecked: Boolean});
+var firstpackingList = new packingListModel({ packingListName: 'beach' });
+firstpackingList.save();
+var firstItem = new itemModel({listName: 'beach', itemName: 'umbrella', isChecked: false});
+firstItem.save();
 var app = express();
+
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -31,6 +40,11 @@ app.get('/', routes.index);
 // app.get('/users', user.list);
 app.get('/PackingList', function(req, resp){
 		resp.render("PackingList");
+	});
+app.get('/shownames', function(req, resp){
+	packingListModel.find(function (err, names) {
+		resp.send('<p>' + names); })
+	console.log("log after var names");
 	});
 
 

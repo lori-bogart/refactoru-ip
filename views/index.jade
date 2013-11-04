@@ -16,8 +16,17 @@ block content
 	p.
 
 		Or open one of your already created lists:
+	div#addListHere
+
+	script#input-template(type="text/x-handlebars-template").
+		<div class='inputRow'>
+			<input class='eachCheckbox' type='checkbox'>
+			<input class='eachItem' type='text' placeholder='packing list item'>
+		</div>
 
 
 	script(src="http://code.jquery.com/jquery-2.0.3.min.js")
+	script(src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js")
 	link(rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css")
 	script(src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")
+	script(src='/javascripts/main.js')
