@@ -8,18 +8,10 @@ $(function() {
 
 	$('#inputRow').on('submit', function() {
 
-
-			console.log( "call was made");
+			// console.log( "call was made");
 			return false;
 
 	});
-
-	
-	// $.get('/shownames', function(data) {
-	// 	console.log(data);
-	// 	console.log("Got to line 20");
-	// 	$('#addListHere').append(data);
-	// });
 	
 	$(document).on('keyup', ".eachItem", function (e) {
                 if (e.keyCode === 13) {
@@ -27,10 +19,10 @@ $(function() {
                         var html = template();
                         $('#inputContainer').append(html);
                         $('#inputContainer .inputRow:last-child .eachItem').focus();
-                        console.log('test', itemInput);
+                        // console.log('test', itemInput);
                 }
 
-        });
+    });
 });
 
 

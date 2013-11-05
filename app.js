@@ -74,7 +74,7 @@ app.post('/add', function(req, res) {
 	  	res.send(500, 'Error encountered saving newPackingList to database.')
 	  }
 	  else {
-		  res.send('a new packing list was entered!');
+		  // res.send('a new packing list was entered!');
 		}
 	});
 
