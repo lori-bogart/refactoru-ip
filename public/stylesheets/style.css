@@ -9,3 +9,7 @@ a {
 .btn {
 	margin-left: 0px;
 }
+input.namefield {
+	width: 50%;
+	margin-top: 5px;
+}
