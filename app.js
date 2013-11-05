@@ -38,11 +38,22 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+// app.get('/', routes.index);
 // app.get('/users', user.list);
 app.get('/PackingList', function(req, resp){
 		resp.render("PackingList");
 	});
+
+app.get('/', function(req, res) {
+
+	// get animals from database
+	packingListModel.find(function(err, packingLists_from_db) {
+		res.render('index', {
+			packingLists_inJade: packingLists_from_db
+		});
+	});
+
+});
 
 // WHOLE THING: route
 // 1st arg: url
@@ -69,11 +80,11 @@ app.post('/add', function(req, res) {
 
 });
 
-app.get('/shownames', function(req, resp){
-	packingListModel.find(function (err, names) {
-		resp.send('<p>' + names); })
-	console.log("log after var names");
-	});
+// app.get('/shownames', function(req, resp){
+// 	packingListModel.find(function (err, names) {
+// 		resp.send('<p>' + names); })
+// 	console.log("log after var names");
+// 	});
 
 
 http.createServer(app).listen(app.get('port'), function(){

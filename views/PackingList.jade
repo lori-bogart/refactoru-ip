@@ -4,7 +4,7 @@ block content
 
 	h1= title
 	//- p Welcome to #{title}
-	h2 Create A Packing List!
+	h2 Create a Packing List!
 	//- p.
 	//-	What do you want to name your Packing List?
 	//- input(class='form-control', type="text", placeholder="packing list name")
@@ -12,7 +12,7 @@ block content
 	form(method='post', action='/add')
 		h3 What do you want to name your Packing List?	
 			input.form-control(name="packingListName", type="text", placeholder="packing list name")
-		input(type='submit')
+		//- input(type='submit')
 	br
 	p.
 		Add your packing items here:
@@ -26,8 +26,7 @@ block content
 
 	h2#new-item
 
-
-	a(class='button').btn.btn-primary.btn-lg + add item
+	//- a(class='button').btn.btn-primary.btn-lg + add item
 	a(class='button').btn.btn-primary.btn-lg Done
 
 	script#input-template(type="text/x-handlebars-template").

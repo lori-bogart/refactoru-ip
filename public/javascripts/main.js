@@ -15,11 +15,11 @@ $(function() {
 	});
 
 	
-	$.get('/shownames', function(data) {
-		console.log(data);
-		console.log("Got to line 20");
-		$('#addListHere').append(data);
-	});
+	// $.get('/shownames', function(data) {
+	// 	console.log(data);
+	// 	console.log("Got to line 20");
+	// 	$('#addListHere').append(data);
+	// });
 	
 	$(document).on('keyup', ".eachItem", function (e) {
                 if (e.keyCode === 13) {

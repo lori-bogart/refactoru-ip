@@ -10,13 +10,19 @@ block content
 	h3.
 		Don't forget anything for your trip! Make a packing list!
 	img(src="/images/suitcase2.jpg")
-	a(href="/PackingList").btn.btn-primary.btn-lg Press here to start creating your list.
+	a(href="/PackingList").btn.btn-primary.btn-lg Press here to start creating your list
 
-
-	p.
-
-		Or open one of your already created lists:
+	br
+	
 	div#addListHere
+
+	if packingLists_inJade.length !== 0
+		p Or open one of your already created lists:
+		ul.list-unstyled
+			for pl in packingLists_inJade
+				createdList = pl.packingListName 
+				li= createdList
+
 
 	script#input-template(type="text/x-handlebars-template").
 		<div class='inputRow'>
