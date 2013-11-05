@@ -11,10 +11,12 @@ var path = require('path');
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/packingdb');
+// convention: model name should have initial cap
+//also, "packingListName" is redundant; better practice is to use "name"
 var packingListModel = mongoose.model('packingList', { packingListName: String });
 var itemModel = mongoose.model('item', { listName: String, itemName: String, isChecked: Boolean});
-var firstpackingList = new packingListModel({ packingListName: 'beach' });
-firstpackingList.save();
+// var firstpackingList = new packingListModel({ packingListName: 'beach' });
+// firstpackingList.save();
 var firstItem = new itemModel({listName: 'beach', itemName: 'umbrella', isChecked: false});
 firstItem.save();
 var app = express();
@@ -41,6 +43,32 @@ app.get('/', routes.index);
 app.get('/PackingList', function(req, resp){
 		resp.render("PackingList");
 	});
+
+// WHOLE THING: route
+// 1st arg: url
+// 2nd arg: route handler (a callback)
+//	- anon function
+// 	- named function, defined elsewhere
+app.post('/add', function(req, res) {
+
+	// 1. create new packing list
+	var newPackingList = new packingListModel({ 
+		packingListName: req.body.packingListName
+	});
+
+// save the packinglist to the database
+	newPackingList.save(function (err) {
+	  if (err) {
+	  	console.log(err);
+	  	res.send(500, 'Error encountered saving newPackingList to database.')
+	  }
+	  else {
+		  res.send('a new packing list was entered!');
+		}
+	});
+
+});
+
 app.get('/shownames', function(req, resp){
 	packingListModel.find(function (err, names) {
 		resp.send('<p>' + names); })
