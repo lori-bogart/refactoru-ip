@@ -12,6 +12,15 @@ $(function() {
 			return false;
 
 	});
+
+	$('#newListForm').submit(function (e) {
+		e.preventDefault() 
+		$.post("/add", $(this).serialize(), function(data) {
+			$("#result").append(data.name); 
+			$("#newListForm")[0].reset();
+			// console.log(data);
+		});
+	});
 	
 	$(document).on('keyup', ".eachItem", function (e) {
                 if (e.keyCode === 13) {
@@ -23,8 +32,17 @@ $(function() {
                 }
 
     });
+
 });
 
-
+// $("#signup-form").submit(function(e){
+// 		//make a post request to our /signup endpoint
+// 		$.post('/signup', $(this).serialize(), function(data){
+// 			// if the request returned a success message, display it.
+// 			if(data.success){
+// 				$('#message').text(data.success)
+// 			}
+// 		})
+// 	});
 	
 	

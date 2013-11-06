@@ -4,31 +4,48 @@ block content
 
 	h1= title
 
-	h1#title Welcome to your Packing Checklist Dashboard
+	//- h1#title Welcome to your Packing Checklist Dashboard
 		
 	//- p Welcome to #{title}
-	h3.
-		Don't forget anything for your trip! Make a packing list!
+	h1.
+		Don't forget anything for your trip. Make a packing list!
 	img(src="/images/suitcase2.jpg")
-	a(href="/PackingList").btn.btn-primary.btn-lg Press here to start creating your list
 
-	br
+	//- a(href="/PackingList").btn.btn-primary.btn-lg Press here to start creating your list
+	form#newListForm(method='post', action='/add')
+		h3 Create a new Packing List:
+			input.form-control.namefield(name="packingListName", type="text", placeholder="packing list name")
+		//- input(type='submit')
+	br.
+				Add your packing items here:
+	//- .checkbox
+	//- label
+
+	div#inputContainer
+
+
+	h2#new-item
+
+	//- a(class='button').btn.btn-primary.btn-lg + add item
+	a(class='button').btn.btn-success.btn-lg Save this list
 	
-	div#addListHere
-
-	if packingLists_inJade.length !== 0
-		p Or open one of your already created lists:
-		ul.list-unstyled
-			for pl in packingLists_inJade
-				createdList = pl.packingListName 
-				li= createdList
-
-
 	script#input-template(type="text/x-handlebars-template").
 		<div class='inputRow'>
 			<input class='eachCheckbox' type='checkbox'>
 			<input class='eachItem' type='text' placeholder='packing list item'>
 		</div>
+	
+	div#addListHere
+
+	if packingLists_inJade.length !== 0
+		h3 Click to use a Packing List:
+		ul.list-unstyled
+			for pl in packingLists_inJade
+				createdList = pl.packingListName 
+				li= createdList
+	div#result
+
+
 
 
 	script(src="http://code.jquery.com/jquery-2.0.3.min.js")

@@ -15,15 +15,27 @@ mongoose.connect('mongodb://localhost/packingdb');
 //also, "packingListName" is redundant; better practice is to use "name"
 var packingListModel = mongoose.model('packingList', { packingListName: String });
 var itemModel = mongoose.model('item', { listName: String, itemName: String, isChecked: Boolean});
+
+//from Raine:
+//create a PackingList more OO model
+// var Packinglist = mongoose.model('PackingList' {
+// 	name: String
+// 	items: [Item]
+// });
+// var Item [
+// 	name: String
+// 	isChecked: Boolean
+// ]
+
 // var firstpackingList = new packingListModel({ packingListName: 'beach' });
 // firstpackingList.save();
-var firstItem = new itemModel({listName: 'beach', itemName: 'umbrella', isChecked: false});
-firstItem.save();
+// var firstItem = new itemModel({listName: 'beach', itemName: 'umbrella', isChecked: false});
+// firstItem.save();
 var app = express();
 
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3001);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -46,7 +58,7 @@ app.get('/PackingList', function(req, resp){
 
 app.get('/', function(req, res) {
 
-	// get animals from database
+	// 
 	packingListModel.find(function(err, packingLists_from_db) {
 		res.render('index', {
 			packingLists_inJade: packingLists_from_db
@@ -69,22 +81,16 @@ app.post('/add', function(req, res) {
 
 // save the packinglist to the database
 	newPackingList.save(function (err) {
-	  if (err) {
-	  	console.log(err);
-	  	res.send(500, 'Error encountered saving newPackingList to database.')
-	  }
-	  else {
-		  // res.send('a new packing list was entered!');
+		if (err) {
+			console.log(err);
+			res.send(500, 'Error encountered saving newPackingList to database.')
+		}
+		else {
+			res.send({name : newPackingList.packingListName})
 		}
 	});
-
 });
 
-// app.get('/shownames', function(req, resp){
-// 	packingListModel.find(function (err, names) {
-// 		resp.send('<p>' + names); })
-// 	console.log("log after var names");
-// 	});
 
 
 http.createServer(app).listen(app.get('port'), function(){

@@ -8,10 +8,12 @@ block content
 	//- p.
 	//-	What do you want to name your Packing List?
 	//- input(class='form-control', type="text", placeholder="packing list name")
-	// default: method='get', action=[current page]
-	form(method='post', action='/add')
-		h3 What do you want to name your Packing List?	
-			input.form-control.namefield(name="packingListName", type="text", placeholder="packing list name")
+	//- default: method='get', action=[current page]
+
+	//- I put this on the index.jade file, instead:
+	//- form(method='post', action='/add')
+	//- 	h3 What do you want to name your Packing List?	
+	//- 		input.form-control.namefield(name="packingListName", type="text", placeholder="packing list name")
 		//- input(type='submit')
 	br
 	p.
@@ -20,20 +22,19 @@ block content
 	//- label
 
 	div#inputContainer
-		//- div.inputRow
-		//- 	input(class='eachCheckbox', type='checkbox')
-		//- 	input(class='eachItem', type="text", placeholder="packing list item")
-
+	
 	h2#new-item
 
 	//- a(class='button').btn.btn-primary.btn-lg + add item
-	a(class='button').btn.btn-primary.btn-lg Finished with this list
+	a(class='button').btn.btn-primary.btn-lg Finished creating this list
 
 	script#input-template(type="text/x-handlebars-template").
 		<div class='inputRow'>
 			<input class='eachCheckbox' type='checkbox'>
 			<input class='eachItem' type='text' placeholder='packing list item'>
 		</div>
+
+
 
 	script(src="http://code.jquery.com/jquery-2.0.3.min.js")
 	script(src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js")
