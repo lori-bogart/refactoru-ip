@@ -4,7 +4,7 @@ $(function() {
 	var template = Handlebars.compile(source);
 	var html = template();
 
-	$('#inputContainer').append(html);
+	$('#packingListItemContainer').append(html);
 
 	$('#inputRow').on('submit', function() {
 
@@ -15,19 +15,21 @@ $(function() {
 
 	$('#newListForm').submit(function (e) {
 		e.preventDefault() 
+		// console.log('test');
 		$.post("/add", $(this).serialize(), function(data) {
 			$("#result").append(data.name); 
 			$("#newListForm")[0].reset();
-			// console.log(data);
+			
 		});
 	});
 	
-	$(document).on('keyup', ".eachItem", function (e) {
+	$(document).on('keydown', ".eachItem", function (e) {
                 if (e.keyCode === 13) {
+                	e.preventDefault()
                         var itemInput = $(this).val();
                         var html = template();
-                        $('#inputContainer').append(html);
-                        $('#inputContainer .inputRow:last-child .eachItem').focus();
+                        $('#packingListItemContainer').append(html);
+                        $('#packingListItemContainer .inputRow:last-child .eachItem').focus();
                         // console.log('test', itemInput);
                 }
 

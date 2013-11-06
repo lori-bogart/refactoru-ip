@@ -78,6 +78,7 @@ app.post('/add', function(req, res) {
 	var newPackingList = new packingListModel({ 
 		packingListName: req.body.packingListName
 	});
+	console.log(req.body.itemEntered);
 
 // save the packinglist to the database
 	newPackingList.save(function (err) {

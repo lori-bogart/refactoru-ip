@@ -15,31 +15,26 @@ block content
 	form#newListForm(method='post', action='/add')
 		h3 Create a new Packing List:
 			input.form-control.namefield(name="packingListName", type="text", placeholder="packing list name")
-		//- input(type='submit')
-	br.
-				Add your packing items here:
-	//- .checkbox
-	//- label
+		p.
+			Add your packing items here:
+		div#packingListItemContainer
 
-	div#inputContainer
+		h2#new-item
 
-
-	h2#new-item
-
-	//- a(class='button').btn.btn-primary.btn-lg + add item
-	a(class='button').btn.btn-success.btn-lg Save this list
-	
+		//- a(class='button').btn.btn-primary.btn-lg + add item
+		button.btn.btn-success.btn-lg Save this list
+		
+	//- take out . at end, then convert html to jade format
 	script#input-template(type="text/x-handlebars-template").
 		<div class='inputRow'>
-			<input class='eachCheckbox' type='checkbox'>
-			<input class='eachItem' type='text' placeholder='packing list item'>
+			<input class='eachItem' type='text' placeholder='packing list item' name='itemEntered'>
 		</div>
 	
 	div#addListHere
 
 	if packingLists_inJade.length !== 0
 		h3 Click to use a Packing List:
-		ul.list-unstyled
+		ul.list-unstyled.toClick
 			for pl in packingLists_inJade
 				createdList = pl.packingListName 
 				li= createdList

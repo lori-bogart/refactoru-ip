@@ -4,7 +4,7 @@ block content
 
 	h1= title
 	//- p Welcome to #{title}
-	h2 Create a Packing List!
+	h2 Use your Packing List!
 	//- p.
 	//-	What do you want to name your Packing List?
 	//- input(class='form-control', type="text", placeholder="packing list name")
@@ -15,24 +15,25 @@ block content
 	//- 	h3 What do you want to name your Packing List?	
 	//- 		input.form-control.namefield(name="packingListName", type="text", placeholder="packing list name")
 		//- input(type='submit')
-	br
 	p.
-		Add your packing items here:
+		
 	//- .checkbox
 	//- label
+
+	//- add the items and the checkboxes on this page (the ones associated with the Packing List)
 
 	div#inputContainer
 	
 	h2#new-item
 
 	//- a(class='button').btn.btn-primary.btn-lg + add item
-	a(class='button').btn.btn-primary.btn-lg Finished creating this list
+	//- a(class='button').btn.btn-primary.btn-lg Finished creating this list
 
-	script#input-template(type="text/x-handlebars-template").
-		<div class='inputRow'>
-			<input class='eachCheckbox' type='checkbox'>
-			<input class='eachItem' type='text' placeholder='packing list item'>
-		</div>
+	//- script#input-template(type="text/x-handlebars-template").
+	//- 	<div class='inputRow'>
+	//- 		<input class='eachCheckbox' type='checkbox'>
+	//- 		<input class='eachItem' type='text' placeholder='packing list item'>
+	//- 	</div>
 
 
 
