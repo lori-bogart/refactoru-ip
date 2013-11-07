@@ -33,7 +33,6 @@ var itemModel = mongoose.model('item', { listName: String, itemName: String, isC
 // firstItem.save();
 var app = express();
 
-
 // all environments
 app.set('port', process.env.PORT || 3001);
 app.set('views', __dirname + '/views');
@@ -53,8 +52,13 @@ if ('development' == app.get('env')) {
 // app.get('/', routes.index);
 // app.get('/users', user.list);
 app.get('/PackingList', function(req, resp){
-		resp.render("PackingList");
+	itemModel.find({listName : req.query.name}, function(err, items_from_db) {
+		resp.render("PackingList", {
+			PackingListDetails: req.query,
+			items_inJade: items_from_db
+		})
 	});
+});
 
 app.get('/', function(req, res) {
 
@@ -64,6 +68,7 @@ app.get('/', function(req, res) {
 			packingLists_inJade: packingLists_from_db
 		});
 	});
+
 
 });
 
@@ -79,6 +84,20 @@ app.post('/add', function(req, res) {
 		packingListName: req.body.packingListName
 	});
 	console.log(req.body.itemEntered);
+	//save the items to the db:
+	for (var i = 0; i < req.body.itemEntered.length; i++) {
+		var item = new itemModel({
+			listName : req.body.packingListName,
+			itemName : req.body.itemEntered[i],
+			isChecked : false
+	 	});
+		item.save(function (err) {
+			if (err) {
+				console.log(err);
+				res.send(500, 'Error encountered saving item ' + i);			
+			}
+		});
+	};
 
 // save the packinglist to the database
 	newPackingList.save(function (err) {

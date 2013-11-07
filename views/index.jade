@@ -30,15 +30,14 @@ block content
 			<input class='eachItem' type='text' placeholder='packing list item' name='itemEntered'>
 		</div>
 	
-	div#addListHere
-
+	//- div#addListHere
 	if packingLists_inJade.length !== 0
 		h3 Click to use a Packing List:
+		div#result
 		ul.list-unstyled.toClick
-			for pl in packingLists_inJade
-				createdList = pl.packingListName 
-				li= createdList
-	div#result
+			for list in packingLists_inJade
+				li: a(href='PackingList?name=' + encodeURIComponent(list.packingListName))=list.packingListName
+
 
 
 

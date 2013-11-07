@@ -17,7 +17,7 @@ $(function() {
 		e.preventDefault() 
 		// console.log('test');
 		$.post("/add", $(this).serialize(), function(data) {
-			$("#result").append(data.name); 
+			$("#result").append('<a href="PackingList?name=' + encodeURIComponent(data.name) + '">' + data.name + '</a>'); 
 			$("#newListForm")[0].reset();
 			
 		});
@@ -34,6 +34,7 @@ $(function() {
                 }
 
     });
+
 
 });
 
