@@ -6,14 +6,11 @@ block content
 	//- p Welcome to #{title}
 	h2= 'Use your ' + PackingListDetails.name + ' Packing List!'
 
-	p= items_inJade[0].itemName
-	//- to do: edit this loop for items:
-		ul.list-unstyled.toClick
-			for list in packingLists_inJade
-				li: a(href='PackingList?name=' + encodeURIComponent(list.packingListName))=list.packingListName
-//- this is from the index.jade
-
-
+	p=items_inJade[0]
+		ul.list-unstyled.thingToPack
+			for list in items_inJade
+				li: input.eachItem(type='text', placeholder='packing list item', name='itemEntered', value='#{list.itemName}')
+				li: input.eachItem(type='checkbox')
 
 
 
