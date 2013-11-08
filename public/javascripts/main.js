@@ -35,6 +35,16 @@ $(function() {
 
     });
 
+	$('.eachCheckbox').on('change', function (e) {
+		console.log('test1');
+		// e.preventDefault(); 
+		console.log('test2');
+		//:checked will return true or false
+		var data = {checked: $(this).is(':checked'), id: $(this).attr('data-id')}
+		$.post("/updateCheckbox", data, function(data) {
+			
+		});
+	});
 
 });
 

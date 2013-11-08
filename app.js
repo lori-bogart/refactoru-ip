@@ -111,6 +111,22 @@ app.post('/add', function(req, res) {
 	});
 });
 
+app.post('/updateCheckbox', function(req, res) {
+
+	//UPDATE the item in the db:
+	console.log(req.body);
+	itemModel.update({_id : req.body.id}, {$set: {isChecked : true }}, function(err, items_from_db) {	
+			if (err) {
+				console.log(err);
+				res.send(500, 'Error encountered saving checkbox ' + req.body.id);			
+			}
+		else {
+			res.send('Success');
+		};
+	});
+
+});
+
 
 
 http.createServer(app).listen(app.get('port'), function(){

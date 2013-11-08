@@ -6,21 +6,15 @@ block content
 	//- p Welcome to #{title}
 	h2= 'Use your ' + PackingListDetails.name + ' Packing List!'
 
-	p=items_inJade[0]
+	p
 		ul.list-unstyled.thingToPack
 			for list in items_inJade
-				li: input.eachItem(type='text', placeholder='packing list item', name='itemEntered', value='#{list.itemName}')
-				li: input.eachItem(type='checkbox')
+				li
+					input.eachCheckbox(type='checkbox', name='checkbox_name', data-id='#{list._id}')
+					input.eachItem(type='text', placeholder='packing list item', name='itemEntered', value='#{list.itemName}', id='#{list._id}')
 
 
 
 	div#inputContainer
 	
 	h2#new-item
-
-
-	script(src="http://code.jquery.com/jquery-2.0.3.min.js")
-	script(src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js")
-	link(rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css")
-	script(src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")
-	script(src='/javascripts/main.js')
