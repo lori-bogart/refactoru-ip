@@ -115,7 +115,7 @@ app.post('/updateCheckbox', function(req, res) {
 
 	//UPDATE the item in the db:
 	console.log(req.body);
-	itemModel.update({_id : req.body.id}, {$set: {isChecked : true }}, function(err, items_from_db) {	
+	itemModel.update({_id : req.body.id}, {$set: {isChecked : req.body.checked }}, function(err, items_from_db) {	
 			if (err) {
 				console.log(err);
 				res.send(500, 'Error encountered saving checkbox ' + req.body.id);			

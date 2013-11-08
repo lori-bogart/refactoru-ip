@@ -9,8 +9,9 @@ block content
 	p
 		ul.list-unstyled.thingToPack
 			for list in items_inJade
+
 				li
-					input.eachCheckbox(type='checkbox', name='checkbox_name', data-id='#{list._id}')
+					input.eachCheckbox(type='checkbox', name='checkbox_name', data-id='#{list._id}', checked=(list.isChecked == true ? "checked" : undefined))
 					input.eachItem(type='text', placeholder='packing list item', name='itemEntered', value='#{list.itemName}', id='#{list._id}')
 
 
