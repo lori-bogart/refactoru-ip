@@ -78,7 +78,10 @@ app.get('/', function(req, res) {
 //	- anon function
 // 	- named function, defined elsewhere
 app.post('/add', function(req, res) {
-
+	// var clearFields = function(){
+	// 	for (i=1 len = $('.inputRow').length list = $('.inputRow'); i < len; i++) { 
+	// 		list[i].remove()
+	// 	});
 	// 1. create new packing list
 	var newPackingList = new packingListModel({ 
 		packingListName: req.body.packingListName
@@ -96,6 +99,9 @@ app.post('/add', function(req, res) {
 				console.log(err);
 				res.send(500, 'Error encountered saving item ' + i);			
 			}
+			// else {
+			// res.send(clearFields);
+			// };
 		});
 	};
 
