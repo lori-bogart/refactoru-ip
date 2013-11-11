@@ -13,3 +13,9 @@ input.namefield {
 	width: 50%;
 	margin-top: 5px;
 }
+.addPlace {
+	margin-left: 40px;
+}
+input.eachItem {
+	margin-left: 40px;
+}

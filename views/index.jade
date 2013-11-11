@@ -7,9 +7,9 @@ block content
 	//- h1#title Welcome to your Packing Checklist Dashboard
 		
 	//- p Welcome to #{title}
-	h1.
+	h2.
 		Don't forget anything for your trip. 
-	h1.
+	h2.
 		Make a packing list!
 	img(src="/images/suitcase315.jpg")
 
@@ -17,14 +17,14 @@ block content
 	form#newListForm(method='post', action='/add')
 		h3 Create a new Packing List:
 			input.form-control.namefield(name="packingListName", type="text", placeholder="packing list name")
-		p.
-			Add your packing items here:
+
+		h4.addPlace  Add your packing items here: 
 		div#packingListItemContainer
 
 		h2#new-item
 
 		//- a(class='button').btn.btn-success.btn-lg Save List
-		button.btn.btn-success.btn-lg Save this list
+		button.btn.btn-success.btn-lg.addPlace Save this list
 		
 		
 	//- take out . at end, then convert html to jade format
