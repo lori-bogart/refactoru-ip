@@ -3,28 +3,28 @@ extends layout
 block content
 
 	h1= title
+	
+	h1.
+		PACKING LIST MAKER
+	h2.
+		Don't forget anything!
+	//- .img-responsive for FWD scaling and zooming of image
+	img.img-responsive(src="/images/suitcase315.jpg", alt="suitcase image")
 
-	//- h1#title Welcome to your Packing Checklist Dashboard
-		
-	//- p Welcome to #{title}
-	h2.
-		Don't forget anything for your trip. 
-	h2.
-		Make a packing list!
-	img(src="/images/suitcase315.jpg")
+	hr.highlight
 
 	//- a(href="/PackingList").btn.btn-primary.btn-lg Press here to start creating your list
 	form#newListForm(method='post', action='/add')
-		h3 Create a new Packing List:
+		h3 Create a new list:
 			input.form-control.namefield(name="packingListName", type="text", placeholder="packing list name")
 		div.addPlace
-			h4  Add your packing items here: 
+			h4  Add your items: 
 			div#packingListItemContainer
 
 			h2#new-item
 			button.btn.btn-success.btn-lg Save this list
 
-		//- a(class='button').btn.btn-success.btn-lg Save List
+	hr.highlight
 		
 		
 		

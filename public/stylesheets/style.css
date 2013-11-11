@@ -22,3 +22,6 @@ input.eachItem {
 .toClick {
 	font-size: larger;
 }
+hr.highlight {
+	border-top: 20px solid #889E91;
+}
