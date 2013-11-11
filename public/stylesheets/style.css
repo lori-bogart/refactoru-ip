@@ -19,3 +19,6 @@ input.namefield {
 input.eachItem {
 	margin-left: 25px;
 }
+.toClick {
+	font-size: larger;
+}
