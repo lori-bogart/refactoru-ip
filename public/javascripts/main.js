@@ -19,7 +19,10 @@ $(function() {
 		$.post("/add", $(this).serialize(), function(data) {
 			$("#result").append('<a href="PackingList?name=' + encodeURIComponent(data.name) + '">' + data.name + '</a>'); 
 			$("#newListForm")[0].reset();
-			
+			var list = $('.inputRow');
+			for (i=1 ; i < list.length; i++) { 
+				list[i].remove();
+			}	
 		});
 	});
 	
