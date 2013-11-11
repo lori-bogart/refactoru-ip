@@ -17,14 +17,15 @@ block content
 	form#newListForm(method='post', action='/add')
 		h3 Create a new Packing List:
 			input.form-control.namefield(name="packingListName", type="text", placeholder="packing list name")
+		div.addPlace
+			h4  Add your packing items here: 
+			div#packingListItemContainer
 
-		h4.addPlace  Add your packing items here: 
-		div#packingListItemContainer
-
-		h2#new-item
+			h2#new-item
+			button.btn.btn-success.btn-lg Save this list
 
 		//- a(class='button').btn.btn-success.btn-lg Save List
-		button.btn.btn-success.btn-lg.addPlace Save this list
+		
 		
 		
 	//- take out . at end, then convert html to jade format
