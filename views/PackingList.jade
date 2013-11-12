@@ -9,13 +9,13 @@ block content
 	p
 		ul.list-unstyled.thingToPack
 			for list in items_inJade
-
+				//- display each item and include a checkbox
 				li
 					input.eachCheckbox(type='checkbox', name='checkbox_name', data-id='#{list._id}', checked=(list.isChecked == true ? "checked" : undefined))
 					input.eachItem(type='text', placeholder='packing list item', name='itemEntered', value='#{list.itemName}', id='#{list._id}')
 
 	a(href='/')
-		button.btn.btn-info(type='button') SAVE
+		button.btn.btn-info(type='button') Back
 
 	div#inputContainer
 	

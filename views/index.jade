@@ -26,15 +26,10 @@ block content
 
 	hr.highlight
 		
-		
-		
-	//- take out . at end, then convert html to jade format
-	//- script#input-template(type="text/x-handlebars-template").
-	//- 	<div class='inputRow'>
-	//- 		<input class='eachItem' type='text' placeholder='packing list item' name='itemEntered'>
-	//- 	</div>
 	
-	//- div#addListHere
+	//- This displays the list of packing lists. 
+	//- packingLists_inJade is a copy of the array retrieved from mongo
+	//- loops through array to render each packing list as a clickable link
 	if packingLists_inJade.length !== 0
 		h3 Click to use a Packing List:
 		div#result

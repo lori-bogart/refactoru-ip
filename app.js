@@ -49,20 +49,9 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-// app.get('/', routes.index);
-// app.get('/users', user.list);
-app.get('/PackingList', function(req, resp){
-	itemModel.find({listName : req.query.name}, function(err, items_from_db) {
-		resp.render("PackingList", {
-			PackingListDetails: req.query,
-			items_inJade: items_from_db
-		})
-	});
-});
-
+// initial page displays list of packing lists
 app.get('/', function(req, res) {
 
-	// 
 	packingListModel.find(function(err, packingLists_from_db) {
 		res.render('index', {
 			packingLists_inJade: packingLists_from_db
@@ -72,37 +61,42 @@ app.get('/', function(req, res) {
 
 });
 
-// WHOLE THING: route
-// 1st arg: url
-// 2nd arg: route handler (a callback)
-//	- anon function
-// 	- named function, defined elsewhere
+// specific packing list displayed
+app.get('/PackingList', function(req, resp){
+	itemModel.find({listName : req.query.name}, function(err, items_from_db) {
+		resp.render("PackingList", {
+			PackingListDetails: req.query,
+			items_inJade: items_from_db
+		})
+	});
+});
+
+// ajax handler to add a new packing list to mongo
+// request is coming from the index.jade page
 app.post('/add', function(req, res) {
 
-	// 1. create new packing list
+	// create new packing list
 	var newPackingList = new packingListModel({ 
 		packingListName: req.body.packingListName
 	});
 	console.log(req.body.itemEntered);
-	//save the items to the db:
+	// loop over each item in the newly created packing list
 	for (var i = 0; i < req.body.itemEntered.length; i++) {
 		var item = new itemModel({
 			listName : req.body.packingListName,
 			itemName : req.body.itemEntered[i],
 			isChecked : false
 	 	});
+	 	// save each item in packing list to mongo
 		item.save(function (err) {
 			if (err) {
 				console.log(err);
 				res.send(500, 'Error encountered saving item ' + i);			
 			}
-			// else {
-			// 	res.send({name :'Success'});
-			// };
 		});
 	};
 
-// save the packinglist to the database
+// save the packing list name in mongo
 	newPackingList.save(function (err) {
 		if (err) {
 			console.log(err);
@@ -114,9 +108,10 @@ app.post('/add', function(req, res) {
 	});
 });
 
+// ajax call from packinglist.jade to update the checkbox state in mongo
 app.post('/updateCheckbox', function(req, res) {
 
-	//UPDATE the item in the db:
+	// update the item in the db:
 	console.log(req.body);
 	itemModel.update({_id : req.body.id}, {$set: {isChecked : req.body.checked }}, function(err, items_from_db) {	
 			if (err) {
@@ -129,7 +124,6 @@ app.post('/updateCheckbox', function(req, res) {
 	});
 
 });
-
 
 
 http.createServer(app).listen(app.get('port'), function(){

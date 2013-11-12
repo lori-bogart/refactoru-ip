@@ -1,5 +1,6 @@
 $(function() {
-
+	//- use handlebars to make coding the page easier
+	//- call handlebar compile and render the page
 	var source   = $("#input-template").html();
 	var template = Handlebars.compile(source);
 	var html = template();
@@ -12,7 +13,7 @@ $(function() {
 			return false;
 
 	});
-
+	//Pressing Save this list button sends the list to the db for storage; including all the items in the list
 	$('#newListForm').submit(function (e) {
 		e.preventDefault() 
 		// console.log('test');
@@ -25,7 +26,7 @@ $(function() {
 			}	
 		});
 	});
-	
+	//adds a new input field each time the user hits enter
 	$(document).on('keydown', ".eachItem", function (e) {
                 if (e.keyCode === 13) {
                 	e.preventDefault()
@@ -37,7 +38,8 @@ $(function() {
                 }
 
     });
-
+	//- each time the checbox is clicked, a checkmark toggles, and that is sent immediately
+	//- to mongo with ajax post
 	$('.eachCheckbox').on('change', function (e) {
 		console.log('test1');
 		// e.preventDefault(); 
