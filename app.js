@@ -5,8 +5,8 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/packingdb');
+var mongoURL = global.process.env.MONGOHQ_URL || 'mongodb://localhost/packingdb'
+mongoose.connect(mongoURL);
 
 var packingListModel = mongoose.model('packingList', { packingListName: String });
 var itemModel = mongoose.model('item', { listName: String, itemName: String, isChecked: Boolean});
