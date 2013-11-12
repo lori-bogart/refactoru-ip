@@ -1,5 +1,5 @@
 $(function() {
-	//- use handlebars to make coding the page easier
+	//- handlebars
 	//- call handlebar compile and render the page
 	var source   = $("#input-template").html();
 	var template = Handlebars.compile(source);
@@ -8,15 +8,13 @@ $(function() {
 	$('#packingListItemContainer').append(html);
 
 	$('#inputRow').on('submit', function() {
-
-			// console.log( "call was made");
 			return false;
-
 	});
+
 	//Pressing Save this list button sends the list to the db for storage; including all the items in the list
 	$('#newListForm').submit(function (e) {
 		e.preventDefault() 
-		// console.log('test');
+
 		$.post("/add", $(this).serialize(), function(data) {
 			$("#result").append('<a href="PackingList?name=' + encodeURIComponent(data.name) + '">' + data.name + '</a>'); 
 			$("#newListForm")[0].reset();
@@ -26,6 +24,7 @@ $(function() {
 			}	
 		});
 	});
+
 	//adds a new input field each time the user hits enter
 	$(document).on('keydown', ".eachItem", function (e) {
                 if (e.keyCode === 13) {
@@ -34,16 +33,13 @@ $(function() {
                         var html = template();
                         $('#packingListItemContainer').append(html);
                         $('#packingListItemContainer .inputRow:last-child .eachItem').focus();
-                        // console.log('test', itemInput);
                 }
 
     });
+
 	//- each time the checbox is clicked, a checkmark toggles, and that is sent immediately
 	//- to mongo with ajax post
 	$('.eachCheckbox').on('change', function (e) {
-		console.log('test1');
-		// e.preventDefault(); 
-		console.log('test2');
 		//:checked will return true or false
 		var data = {checked: $(this).is(':checked'), id: $(this).attr('data-id')}
 		$.post("/updateCheckbox", data, function(data) {
@@ -53,14 +49,5 @@ $(function() {
 
 });
 
-// $("#signup-form").submit(function(e){
-// 		//make a post request to our /signup endpoint
-// 		$.post('/signup', $(this).serialize(), function(data){
-// 			// if the request returned a success message, display it.
-// 			if(data.success){
-// 				$('#message').text(data.success)
-// 			}
-// 		})
-// 	});
 	
 	

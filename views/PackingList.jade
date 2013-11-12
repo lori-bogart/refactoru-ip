@@ -3,7 +3,7 @@ extends layout
 block content
 
 	h1= title
-	//- p Welcome to #{title}
+
 	h2= 'Your ' + PackingListDetails.name + ' Packing List!'
 
 	p
@@ -15,7 +15,7 @@ block content
 					input.eachItem(type='text', placeholder='packing list item', name='itemEntered', value='#{list.itemName}', id='#{list._id}')
 
 	a(href='/')
-		button.btn.btn-info(type='button') Back
+		button.btn.btn-info.btn-lg(type='button') Back
 
 	div#inputContainer
 	

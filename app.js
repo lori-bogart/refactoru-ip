@@ -1,8 +1,4 @@
 
-/** app.js Packing List IP project
- * Module dependencies.
- */
-
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
@@ -11,26 +7,10 @@ var path = require('path');
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/packingdb');
-// convention: model name should have initial cap
-//also, "packingListName" is redundant; better practice is to use "name"
+
 var packingListModel = mongoose.model('packingList', { packingListName: String });
 var itemModel = mongoose.model('item', { listName: String, itemName: String, isChecked: Boolean});
 
-//from Raine:
-//create a PackingList more OO model
-// var Packinglist = mongoose.model('PackingList' {
-// 	name: String
-// 	items: [Item]
-// });
-// var Item [
-// 	name: String
-// 	isChecked: Boolean
-// ]
-
-// var firstpackingList = new packingListModel({ packingListName: 'beach' });
-// firstpackingList.save();
-// var firstItem = new itemModel({listName: 'beach', itemName: 'umbrella', isChecked: false});
-// firstItem.save();
 var app = express();
 
 // all environments
@@ -51,14 +31,11 @@ if ('development' == app.get('env')) {
 
 // initial page displays list of packing lists
 app.get('/', function(req, res) {
-
 	packingListModel.find(function(err, packingLists_from_db) {
 		res.render('index', {
 			packingLists_inJade: packingLists_from_db
 		});
 	});
-
-
 });
 
 // specific packing list displayed
@@ -67,7 +44,7 @@ app.get('/PackingList', function(req, resp){
 		resp.render("PackingList", {
 			PackingListDetails: req.query,
 			items_inJade: items_from_db
-		})
+		});
 	});
 });
 
@@ -79,7 +56,7 @@ app.post('/add', function(req, res) {
 	var newPackingList = new packingListModel({ 
 		packingListName: req.body.packingListName
 	});
-	console.log(req.body.itemEntered);
+
 	// loop over each item in the newly created packing list
 	for (var i = 0; i < req.body.itemEntered.length; i++) {
 		var item = new itemModel({
@@ -122,9 +99,7 @@ app.post('/updateCheckbox', function(req, res) {
 			res.send('Success');
 		};
 	});
-
 });
-
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -24,8 +24,7 @@ block content
 			h2#new-item
 			button.btn.btn-success.btn-lg Save this list
 
-	hr.highlight
-		
+	hr.highlight	
 	
 	//- This displays the list of packing lists. 
 	//- packingLists_inJade is a copy of the array retrieved from mongo
@@ -36,13 +35,3 @@ block content
 		ul.list-unstyled.toClick
 			for list in packingLists_inJade
 				li: a(href='PackingList?name=' + encodeURIComponent(list.packingListName))=list.packingListName
-
-
-
-
-
-	//- script(src="http://code.jquery.com/jquery-2.0.3.min.js")
-	//- script(src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js")
-	//- link(rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css")
-	//- script(src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")
-	//- script(src='/javascripts/main.js')
